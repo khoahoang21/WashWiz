@@ -11,6 +11,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Adjust spacing between items */
+        }
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+        .radio-group input[type="radio"] {
+            transform: scale(0.6); /* Smaller size of radio buttons */
+            margin-right: 10px; /* Space between radio button and label text */
+        }
+    </style>
 </head>
 <body>
 <div th:replace="~{web/header::header}"></div>
@@ -34,24 +50,46 @@
             <span>[[${product.category.name}]]</span>
             <h1>[[${product.name}]]</h1>
             <h4>[[${product.price}]] đ</h4>
-<!--            <span>Quantity : [[${product.quantity}]]</span><br>-->
-<!--            <span>Rest : [[${product.quantity - product.amount}]]</span>-->
-
             <br>
-            <th:block th:if="${product.amount < product.quantity}">
-                <span style="font-size:16px;">
-                     <span th:text="${product.name == 'Vệ sinh giày' ? 'Số giày:' : 'Số lượng/kg:'}"></span>
-                    <input type="number" name="quantity" id="quantity" value="1" min="1" th:max="${product.quantity - product.amount}" style="padding: 8px 10px;outline:none;"></span>
-                <div class="btn" type="submit" th:onclick="'addProductToCart(\'' + ${product.id} + '\');'"> Add to Cart</div>
-            </th:block>
 
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="productChoice" value="Downy" checked> Downy
+                </label>
+                <label>
+                    <input type="radio" name="productChoice" value="Omo"> Tide
+                </label>
+                <label>
+                    <input type="radio" name="productChoice" value="Comfo"> Omo
+                </label>
+            </div>
+
+            <th:block th:if="${product.amount < product.quantity}">
+                <span style="font-size:16px;" th:if="${product.name == 'Nước Xả Vải'}">
+                    <span th:if="${product.name == 'Nước Xả Vải'}" style="display: none;">
+                    <input type="hidden" id="quantity" name="quantity" value="1"></span>
+                </span>
+
+                <span style="font-size:16px;" th:unless="${product.name == 'Nước Xả Vải'}">
+                    <span style="font-size:16px;" th:unless="${product.name == 'Giặt Thú Bông'}">
+                <span th:text="${product.name == 'Vệ sinh giày' ? 'Số giày:' : 'Số lượng/kg:'}"></span>
+                <input type="number" name="quantity" id="quantity" value="1" min="1" th:max="${product.quantity - product.amount}" style="padding: 8px 10px;outline:none;">
+                    </span>
+                </span>
+
+                <span style="font-size:16px;" th:if="${product.name == 'Giặt Thú Bông'}">
+               <span style="font-size:16px;">Số lượng:
+                <input type="number" name="quantity" id="quantity" value="1" min="1" th:max="${product.quantity - product.amount}" style="padding: 8px 10px;outline:none;"></span>
+                </span>
+                <div class="btn" type="submit" th:onclick="'addProductToCart(\'' + ${product.id} + '\');'"> Thêm Vào Giỏ Hàng</div>
+            </th:block>
             <th:block th:if="${product.amount >= product.quantity}">
                 <div class="btn" style="background-color: #2b3d51">Sold out</div>
             </th:block>
             <br>
 <!--            <p>Brand: [[${detail.brand}]]</p>-->
 <!--            <p>Color: [[${detail.color}]]</p>-->
-            <p>Description: [[${detail.description}]]</p>
+<!--            <p>Description: [[${detail.description}]]</p>-->
 <!--            <p>Material: [[${detail.material}]]</p>-->
         </div>
 
@@ -61,7 +99,7 @@
 <!-- ------ title ------ -->
 <div class="small-container">
     <div class="row row-2">
-        <h2>Related Products</h2>
+<!--        <h2>Related Products</h2>-->
         <a href="/products/0/page/1"><p>View More</p></a>
     </div>
 </div>
