@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<!-- ------- header ------- -->
+<th:block th:fragment="header_home">
+<div class="header">
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="/home"><img src="images/logo.png" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="/home">Trang Chủ</a></li>
+                    <li><a href="/products/0/page/1">Dịch Vụ</a></li>
+
+                    <th:block th:if="${session.account != null}">
+                        <li><a href="/profile">Xin chào [[${session.info.fullname}]]</a></li>
+                        <li><a href="/logout">Đăng Xuất</a></li>
+                    </th:block>
+
+                    <th:block th:if="${session.account == null}">
+                        <li><a href="/login">Đăng Nhập</a></li>
+
+                    </th:block>
+                </ul>
+            </nav>
+            <div style="position: relative">
+
+                <a href="/cart"><img src="images/cart.png" width="30px" height="30px" style="margin-right: 10px;">
+                    <th:block th:if="${count > 0}">
+                        <span  class="cart-badge" style="color: black; position: absolute; bottom: 0; right: 0">[[${count}]]</span>
+                    </th:block>
+                </a>
+
+
+            </div>
+
+            <img src="images/menu.png" class="menu-icon" onclick="menutoggle()" >
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-2">
+                <h1>WashWiz</h1>
+                <p>WashWiz là một dịch vụ chuyên nghiệp được tạo ra<br>nhầm để đáp ứng nhu cầu giặt giũ trong cuộc sống bộn bề ngày nay.</p>
+                <a href="/products/0/page/1" class="btn">Khám Phá Ngay &#8594;</a>
+            </div>
+            <div class="col-2">
+                <img src="images/image1.png">
+            </div>
+        </div>
+    </div>
+</div>
+</th:block>
+<!-- -------End header ------- -->
+</body>
+</html>

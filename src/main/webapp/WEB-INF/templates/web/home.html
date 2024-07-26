@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WashWiz</title>
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    .square-image {
+        width: 200px; /* bạn có thể thay đổi kích thước theo nhu cầu */
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+<body>
+<th:block th:replace="~{web/header-home::header_home}">
+
+</th:block>
+<div class="categories">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-3">
+                <img src="images/img2.png">
+            </div>
+            <div class="col-3">
+                <img src="images/img4.png">
+            </div>
+            <div class="col-3">
+                <img src="images/img3.png">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- ------- featured products ------- -->
+<div class="small-container">
+    <h2 class="title">Dịch Vụ Nổi Bật</h2>
+    <div class="row">
+
+        <th:block th:each="p : ${listtop8product}">
+
+            <div class="col-4">
+                <a th:href="@{'/product-detail/'+${p.id}+'/'+${p.category.id}}">
+                    <img class="square-image" th:src="@{'/api/uploadfile/upload/' + ${p.thumbnailPhoto}}" ></a>
+                <h4>[[${p.name}]]</h4>
+                <p>[[${p.price}]] đ</p>
+            </div>
+
+        </th:block>
+
+    </div>
+<!--    <h2 class="title">Latest Services</h2>-->
+    <div class="row">
+        <th:block th:each="p : ${listlast4product}">
+            <div class="col-4">
+                <a th:href="@{'/product-detail/'+${p.id}+'/'+${p.category.id}}">
+                    <img th:src="@{'/api/uploadfile/upload/' + ${p.thumbnailPhoto}}"></a>
+                <h4>[[${p.Name}]]</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>[[${p.price}]] $</p>
+            </div>
+        </th:block>
+    </div>
+</div>
+
+<!-- ------- offer ------- -->
+<div class="offer">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-2">
+                <img src="images/exclusive.png" class="offer-img">
+            </div>
+            <div class="col-2">
+                <p>Dịch Vụ Phổ Biến Nhất</p>
+                <h1>Vệ Sinh Giày</h1>
+                <small>Bạn là người yêu thích giày thể thao và muốn giữ cho đôi giày của mình luôn sạch sẽ, bền đẹp?
+                    Dịch vụ giặt giày thể thao của chúng tôi chính là giải pháp hoàn hảo dành cho bạn!
+                    Với đội ngũ chuyên gia giàu kinh nghiệm và trang thiết bị hiện đại, chúng tôi cam kết mang đến cho bạn sự hài lòng tối đa với từng đôi giày.</small>
+                <br>
+<!--                <a href="/product-detail/45/9" class="btn">Buy Now &#8594;</a>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ------- testimonial ------- -->
+
+<!--<div class="testimonial">-->
+<!--    <div class="small-container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-3">-->
+<!--                <i class="fa fa-quote-left"></i>-->
+<!--                <p>Good</p>-->
+
+<!--                <div class="rating">-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star-o"></i>-->
+<!--                </div>-->
+<!--                <img src="images/user-1.png">-->
+<!--                <h3>Sean Park</h3>-->
+<!--            </div>-->
+
+<!--            <div class="col-3">-->
+<!--                <i class="fa fa-quote-left"></i>-->
+<!--                <p>So Good</p>-->
+
+<!--                <div class="rating">-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star-o"></i>-->
+<!--                </div>-->
+<!--                <img src="images/user-2.png">-->
+<!--                <h3>Mike Smith</h3>-->
+<!--            </div>-->
+
+<!--            <div class="col-3">-->
+<!--                <i class="fa fa-quote-left"></i>-->
+<!--                <p>Very Good</p>-->
+
+<!--                <div class="rating">-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star"></i>-->
+<!--                    <i class="fa fa-star-o"></i>-->
+<!--                </div>-->
+<!--                <img src="images/user-3.png">-->
+<!--                <h3>Mabel John</h3>-->
+<!--            </div>-->
+
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!-- ------- brands ------- -->
+<div class="brands">
+    <div class="small-container">
+        <div class="row">
+            <div class="col-5">
+                <img src="images/downy.png" alt="">
+            </div>
+            <div class="col-5">
+                <img src="images/tide.png" alt="">
+            </div>
+            <div class="col-5">
+                <img src="images/omo.png" alt="">
+            </div>
+<!--            <div class="col-5">-->
+<!--                <img src="images/logo-paypal.png" alt="">-->
+<!--            </div>-->
+<!--            <div class="col-5">-->
+<!--                <img src="images/logo-philips.png" alt="">-->
+<!--            </div>-->
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="~{web/footer::footer}">
+
+</th:block>
+
+<!-- -------- js for toggle menu -------- -->
+<!-- -------- js for toggle menu -------- -->
+<script>
+    var MenuItems = document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight ="0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight == "0px"){
+            MenuItems.style.maxHeight ="200px"
+        }
+        else{
+            MenuItems.style.maxHeight ="0px"
+        }
+    }
+</script>
+</body>
+</html>
