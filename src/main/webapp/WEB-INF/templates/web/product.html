@@ -38,7 +38,8 @@
         </div>
         <h3>Lọc</h3>
         <select onchange="location = this.value;">
-            <option value="/product/0/page/1">Chọn Dịch Vụ</option>
+            <option value="/products/0/page/1">Chọn Dịch Vụ</option>
+            <option value="/products/0/page/1">Tất Cả Dịch Vụ</option>
             <th:block th:each="t : ${listAllCategory}">
                 <option  th:value="@{'/products/'+${t.id}+'/page/'+${1}}" th:class="${t.id == targetactive ? 'selected' : '' }">[[${t.name}]]</option>
             </th:block>

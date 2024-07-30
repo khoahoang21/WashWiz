@@ -52,6 +52,7 @@
             <h4>[[${product.price}]] đ</h4>
             <br>
 
+            <th:block th:if="${product.name == 'Nước Xả Vải'}">
             <div class="radio-group">
                 <label>
                     <input type="radio" name="productChoice" value="Downy" checked> Downy
@@ -63,6 +64,7 @@
                     <input type="radio" name="productChoice" value="Comfo"> Omo
                 </label>
             </div>
+            </th:block>
 
             <th:block th:if="${product.amount < product.quantity}">
                 <span style="font-size:16px;" th:if="${product.name == 'Nước Xả Vải'}">

@@ -17,9 +17,18 @@
 </div>
 
 <div class="small-container cart-page">
+<!--    <th:block th:if="${message}">-->
+<!--        <h4 style="color: #2fff00">[[${message}]]</h4>-->
+<!--    </th:block>-->
     <th:block th:if="${message}">
-        <h4 style="color: #2fff00">[[${message}]]</h4>
+        <div style="display: flex; align-items: center;">
+            <h4 style="color: #2fff00; margin-right: 10px;">[[${message}]]</h4>
+            <th:block th:if="${message} == 'Đang Xác Nhận Thanh toán Vui Lòng Chờ !!!'">
+                <a style="background-color: #2b3d51;" href="/transaction-history" class="btn">Xem Hóa Đơn</a>
+            </th:block>
+        </div>
     </th:block>
+
     <table class="cart-item">
         <tr>
             <th>Sản Phẩm</th>
